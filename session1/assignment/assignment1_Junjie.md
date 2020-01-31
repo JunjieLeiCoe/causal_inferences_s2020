@@ -10,6 +10,8 @@ Title: Intro Causality Fundamentals
 
 ---
 
+## 1 Notebook problems
+
 ### 1.1 Law of large numbers
 
 1. Where in the code are the parameters μ and $\sigma^2$ set? 
@@ -63,7 +65,7 @@ Title: Intro Causality Fundamentals
 
 ### 1.2 Selection bias
 
-![Screen Shot 2020-01-28 at 8.53.36 PM](/Users/leijunjie/Desktop/Screen Shot 2020-01-28 at 8.53.36 PM.png)
+<img src="/Users/leijunjie/Library/Application Support/typora-user-images/image-20200131120926317.png" alt="image-20200131120926317" style="zoom:50%;" />
 
 1. calculate the $$E[Y^1 - Y^0]$$
 
@@ -131,6 +133,57 @@ np.unique(D,
 
    ($Y^1$, $Y^0$ $\bot$ $D$ )
 
-   
+   even when `selection bias` is eliminated $\rightarrow $ (the potential outcomes of donation without seeing the ads are jointly indepenet of the treatment assignment.)
+
+   the treatment & control groups bahave differently even if there is no ads
 
 3. 
+
+<img src="/Users/leijunjie/Library/Application Support/typora-user-images/image-20200131121506802.png" alt="image-20200131121506802" style="zoom:25%;" /><img src="/Users/leijunjie/Library/Application Support/typora-user-images/image-20200131121408184.png" alt="image-20200131121408184" style="zoom:25%;" /> 
+
+
+
+### 1.4 Data-generating process for an experiment with a treatment effect
+
+1. make a version of the biased data-generating process with an $ATE = 0.3$
+
+   the line of the code that I changed is 
+
+   ```python
+   Y1 = Y0 + 0.3
+   NATE --> 
+   1.11414 - 0.64309 = 0.47104999999999986 
+   ```
+
+2. Repeat the Dexp experiment to show that NATE=ATE=0.3.
+
+
+
+## 2 Causality warm-up
+
+## 3 In-class study discussion
+
+## 4 Critical reading
+
+## 5 Selection bias vs. big data
+
+1. write down teh $NATE$ decomposition equation adn write the value of each of the 4 components
+
+   $$\textbf{NATE} = \textbf{ATE} + \textbf{SelectionBias} + \textbf{Differnential Bias}$$
+
+   * NATE --> $E[Y1|D=1] - E[Y0|D=0] = 0.17217832824951973$
+   * ATE --> $0$ 
+   * S.B --> $ 0.17217832824951973$
+   * D.B --> $0$ 
+
+2. 
+
+## Bonus.1 Why it is called identification
+
+## Bonus.2 
+
+
+
+---
+
+Junjie
