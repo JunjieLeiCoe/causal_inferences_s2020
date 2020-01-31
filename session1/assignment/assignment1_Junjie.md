@@ -46,7 +46,7 @@ Title: Intro Causality Fundamentals
    2. the code respoding to $$S_n = \sum_{i=1}^nX_i$$ is 
 
       ```python
-      partial_sums = X_n.cumsum(axis=0)
+      partial_sums = X_n.cumsum(axis= 0)
       ```
 
    3. the code responding to $\dfrac{1}{n}S_n$ is 
@@ -89,7 +89,9 @@ Title: Intro Causality Fundamentals
    charitability = np.random.normal(loc=-1, scale=0.5, size=N)
    ```
 
-   the reason is because 
+   `seelction bias` is the systematic difference in $Y^0$ between the treatment and control groups. It occurs when the two groups are systematically different even in hte absence of an actual treatment, in this case, it is the `charitibility` of different indiviudals;
+
+   
 
 5. calculate the **$P(D =1 )$**
 
@@ -97,31 +99,38 @@ Title: Intro Causality Fundamentals
 
 ### 1.3 Data generating process for a null experiment
 
-- Make a version of this data-generating process that is a true randomized experiment. The new treatment variable should be $D_{exp}$. Make the overall probability of treatment the same, i.e., $P(D =1) = P(D_{exp} = 1)$. Show that the experiment eliminates **selection** **bias**. Calculate the ***NATE***.
+1. Make a version of this data-generating process that is a true randomized experiment. The new treatment variable should be $D_{exp}$. Make the overall probability of treatment the same, i.e., $P(D =1) = P(D_{exp} = 1)$. Show that the experiment eliminates **selection** **bias**. Calculate the ***NATE***.
 
-  ```python
-  # size of the experiment;  
-  N = 10 ** 6 
-  
-  # inherient charity;
-  charitability = np.random.normal(loc = -1, scale=0.5, size = N)
-  
-  # AD in this case has no effect;
-  Y0 = np.random.lognormal(mean=(charitability + 0.5), sigma=0.1, size=N)
-  Y1 = Y0.copy()
-  
-  # the treatment is the AD
-  # in this exercise, we are going to make the AD amount the same; 
-  prob_search_dwb = scipy.special.expit(charitability)
-  D = np.random.binomial(n = 1, p = 0.5, size = N)
-  
-  np.unique(D, 
-            return_counts = True)
-  ```
+```python
+# size of the experiment;  
+N = 10 ** 6 
 
-  ![Screen Shot 2020-01-28 at 10.17.16 PM](/Users/leijunjie/Desktop/Screen Shot 2020-01-28 at 10.17.16 PM.png)
+# inherient charity;
+charitability = np.random.normal(loc = -1, scale=0.5, size = N)
 
+# AD in this case has no effect;
+Y0 = np.random.lognormal(mean=(charitability + 0.5), sigma=0.1, size=N)
+Y1 = Y0.copy()
 
+# the treatment is the AD
+# in this exercise, we are going to make the AD amount the same; 
+prob_search_dwb = scipy.special.expit(charitability)
+D = np.random.binomial(n = 1, p = 0.5, size = N)
 
+np.unique(D, 
+          return_counts = True)
+```
 
+<img src="/Users/leijunjie/Library/Application Support/typora-user-images/image-20200131112734625.png" alt="image-20200131112734625" style="zoom:40%;" />
 
+- $NATE \rightarrow E[Y^1 | D = 1 ] - E[Y^0 | D = 0] $
+
+  $= - 0.000705$
+
+2. Interpret figure 1 'density of $Y_0$ by treatment group' w.r.t the independece assumption: 
+
+   ($Y^1$, $Y^0$ $\bot$ $D$ )
+
+   
+
+3. 
