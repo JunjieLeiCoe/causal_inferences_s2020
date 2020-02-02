@@ -57,7 +57,15 @@ Title: Intro Causality Fundamentals
       partial_means = np.divide(partial_sums, n_index)
       ```
 
-   4. the object in math in not the *exactly* the same
+   4. the object in math in not the *exactly* the same; 
+
+      - start from 0 
+
+      - culmulative sum and
+
+      - Divide by the index
+
+        
 
 3. Explain intuitively why the line is more stable at the end.
 
@@ -85,13 +93,19 @@ Title: Intro Causality Fundamentals
 
      hence it is $0.814968 - 0.642790$ $\rightarrow$ `0.172178` 
 
-4. what line(s) of code fundamentally craetes the selection bias? explain.
+4. what line(s) of code **fundamentally ** craetes the selection bias? explain.
 
    ```python
    charitability = np.random.normal(loc=-1, scale=0.5, size=N)
    ```
 
-   `seelction bias` is the systematic difference in $Y^0$ between the treatment and control groups. It occurs when the two groups are systematically different even in hte absence of an actual treatment, in this case, it is the `charitibility` of different indiviudals;
+   and the following lines of code determines if the individuals search for the DWB ads and receive the `treatment`;
+
+   ```python
+   prob_search_dwb = scipy.special.expit(charitability)
+   ```
+
+   `selction bias` is the systematic difference in $Y^0$ between the treatment and control groups. It occurs when the two groups are systematically different even in hte absence of an actual treatment, in this case, it is the `charitibility` of different indiviudals;
 
    
 
@@ -116,7 +130,7 @@ Y1 = Y0.copy()
 
 # the treatment is the AD
 # in this exercise, we are going to make the AD amount the same; 
-prob_search_dwb = scipy.special.expit(charitability)
+# prob_search_dwb = scipy.special.expit(charitability)
 D = np.random.binomial(n = 1, p = 0.5, size = N)
 
 np.unique(D, 
@@ -133,13 +147,15 @@ np.unique(D,
 
    ($Y^1$, $Y^0$ $\bot$ $D$ )
 
-   even when `selection bias` is eliminated $\rightarrow $ (the potential outcomes of donation without seeing the ads are jointly indepenet of the treatment assignment.)
+   even when `selection bias` is eliminated $\rightarrow $ (the potential outcomes of donation without seeing the ads are jointly indepedent of the treatment assignment.)
 
    the treatment & control groups bahave differently even if there is no ads
 
 3. 
 
 <img src="/Users/leijunjie/Library/Application Support/typora-user-images/image-20200131121506802.png" alt="image-20200131121506802" style="zoom:25%;" /><img src="/Users/leijunjie/Library/Application Support/typora-user-images/image-20200131121408184.png" alt="image-20200131121408184" style="zoom:25%;" /> 
+
+the overlap...
 
 
 
@@ -157,6 +173,8 @@ np.unique(D,
 
 2. Repeat the Dexp experiment to show that NATE=ATE=0.3.
 
+   <img src="/Users/leijunjie/Library/Application Support/typora-user-images/image-20200201153123311.png" alt="image-20200201153123311" style="zoom:80%;" />
+
 
 
 ## 2 Causality warm-up
@@ -167,12 +185,12 @@ np.unique(D,
 
 ## 5 Selection bias vs. big data
 
-1. write down teh $NATE$ decomposition equation adn write the value of each of the 4 components
+1. write down the $NATE$ decomposition equation and write the value of each of the 4 components
 
-   $$\textbf{NATE} = \textbf{ATE} + \textbf{SelectionBias} + \textbf{Differnential Bias}$$
+   $$\textbf{NATE} = \textbf{ATE} (E[Y^1 - Y^0] ) + \textbf{SelectionBias} + \textbf{Differnential Bias}$$
 
    * NATE --> $E[Y1|D=1] - E[Y0|D=0] = 0.17217832824951973$
-   * ATE --> $0$ 
+   * ATE --> $E[Y^1 - Y^0] = 0$  
    * S.B --> $ 0.17217832824951973$
    * D.B --> $0$ 
 
