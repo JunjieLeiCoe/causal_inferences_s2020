@@ -22,6 +22,7 @@ Title: Intro Causality Fundamentals
 
      ```python
      X_n = np.random.normal(loc=0, scale=1, size=(10 ** 3, 1))
+     
      # numpy.random.normaldraws random sample from a normal(Gaussian) distribution; 
      # loc indicates the --> mean
      # scale --> standard deviation 
@@ -263,7 +264,17 @@ The ariticle that I selected was the `Study 5: preschooler's use of phones and t
 
 ## 4 Critical reading
 
+1. The article that I am interested in is [Understanding Why Crime Fell in the 1990s: Four Factors that Explain the Decline and Six that Do Not](http://pricetheory.uchicago.edu/levitt/Papers/LevittUnderstandingWhyCrime2004.pdf)  by professor Steven D. Levitt
 
+   
+
+2. What are the units in the study?
+
+   the units in this study is the `FBI violent and property crime index`  & `homicide rates ` and other national trends in specifc categories of crime. 
+
+
+
+3. the $$
 
 ## 5 Selection bias vs. big data
 
