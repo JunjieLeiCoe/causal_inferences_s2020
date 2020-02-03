@@ -22,7 +22,7 @@ Title: Intro Causality Fundamentals
 
      ```python
      X_n = np.random.normal(loc=0, scale=1, size=(10 ** 3, 1))
-     # `numpy.random.normal`draws random sample from a normal(Gaussian) distribution; 
+     # numpy.random.normaldraws random sample from a normal(Gaussian) distribution; 
      # loc indicates the --> mean
      # scale --> standard deviation 
      ```
@@ -209,7 +209,61 @@ the overlap...
 
 ## 3 In-class study discussion
 
+The ariticle that I selected was the `Study 5: preschooler's use of phones and tablets`
+
+- this study is facing the sample of $402$ mothers of $3 - 5 $ year-olds, the observed data are all fron online survey; So each $i$ indicates/represents the $3 - 5$ year old child; 
+
+  
+
+- What are the $Y^0$ & $Y^1$ in this study? 
+
+  $Y^0 \rightarrow$ the average of **bedtime, wake time, sleep time, napping behaviors** of the children who do not have the habit of using electonic device at bed time
+
+  $Y^1 \rightarrow$ the average of **bedtime, wake time, sleep time,  napping behaviors** of the children who have the habit of using electonic device at bed time.
+
+  
+
+- What is the treatment $(D)$
+
+  The treatment in this case is the `electronic media use 
+
+  
+
+- A mechanism that can casue bias in this study; which direction; 
+
+  In this study, the sample observation is relatively small;
+
+  hence there are many ways can casue `selection bias`; 
+
+  - the parents are heavy phone, computer, social media user; which can casue the bias to go up.  even without the `electonic media use`, the child can also be affect by their parents' noise and sleep late, wake up late...
+
+  - the observed kid is a `nocturnal kid` who has a sleeping pattern that very different from peers; also causes the bias to go up;   
+
+    
+
+- Describe a mechanics that could cause differntial effect bias; which direction does the bias go? 
+
+  The mothers in hoping for healthy lifestyle search online for related articles and recommanded with this survey by the reasearchers or Google; 
+
+  which can casue the differential bias to go down; because the differential effect bias is calculated with `P(treatment)` $\times$ `(ATT - ATC) ` in this case, the mothers hoping for a healthy life style maybe eduacte their kids to spend less time on social media. So the preceived percetage of treatment decreases.
+
+  
+
+-  describe what would it mean if the independence assumption is true in this study.
+
+  The `independece assumption` means the potential outcomes are independet of treatment assginment  $X \rightarrow$ $(Y^0, Y^1)$ $  \bot $ $D$ ; In this study, it means the chidren's sleeping pattern are indepedent from the electronic media use; Without any interfence of electronic media, the sleeping pattern of 2 groups should be exactly the same. With the using of electronic meida use, the sleeping pattern of 2 groups should also the same after the treatment. 
+
+  
+
+-  Describe how you would do a true randomized experiments to study this causal relationship.
+
+   I might do the survey in the Orphanges. The reason is becasue within the Orphanges, the children might be accessble to eclectonics so often. Also becasue it is under regulation of adults, the sleeping time, wake up time, napping behavior can be more precisely observed. Also, all the children are trainned under the same way after they are received in the Orphanges. 
+
+ 
+
 ## 4 Critical reading
+
+
 
 ## 5 Selection bias vs. big data
 
