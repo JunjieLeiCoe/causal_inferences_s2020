@@ -57,13 +57,11 @@ Title: Intro Causality Fundamentals
       partial_means = np.divide(partial_sums, n_index)
       ```
 
-   4. the object in math in not the *exactly* the same; 
+   4. the object in math in not the *exactly* the same in a computer; 
 
-      - start from 0 
+      - `python` index starts from `0` instead of `1`
 
-      - culmulative sum and
-
-      - Divide by the index
+      -  It is a `parital mean` and `parital sum`, but mathematical calculation does not require those; 
 
         
 
@@ -178,6 +176,32 @@ the overlap...
 
 
 ## 2 Causality warm-up
+
+### 1. 
+
+1. Selection bias;
+
+   - Control for all other factors, `selection bias` exisits when there are systematic differences in 2 groups. i.e. certain charateristics crucial to the output of the experiment exists in one group but not  in another; even without any treament, 2 groups of individuals make very different decisions;
+
+   - mathmatically
+
+     NATE = ATE + selection bias + differential bias; 
+
+     $E[Y^0|treatment] - E[Y^0|control] $
+
+   -  it is a problem, because of the bias exists in the system, hence the true treatment effect cannot be observed or misguided; 
+
+2. 
+   - It could be `cultural differences`; people with different background, religious, origins hold very different opinions on various situations or when facing the experiment; 
+   - it could also exists in the `sample selection process`; also selection bias can occur if the experimenters have some biases when selecting the data; 
+
+
+
+3. random variable to be independent; 
+   - one variable's change ($ \Delta$ )does not rely/depend on all other variables' movements; 
+   - mathematically; it uses the symbol $(\bot) $
+
+
 
 ## 3 In-class study discussion
 
