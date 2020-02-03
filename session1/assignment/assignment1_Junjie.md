@@ -201,7 +201,11 @@ the overlap...
    - one variable's change ($ \Delta$ )does not rely/depend on all other variables' movements; 
    - mathematically; it uses the symbol $(\bot) $
 
+4. why do experiments remove `selection bias?` 
 
+   becasue **experiments** can use various techniques, simulations... to create an indepedent random process to make the random variables truely independent. Ultimately make the treatment effective when realeased to the population; 
+
+   
 
 ## 3 In-class study discussion
 
