@@ -62,7 +62,7 @@ Title: Intro Causality Fundamentals
 
       - `python` index starts from `0` instead of `1`
 
-      -  It is a `parital mean` and `parital sum`, but mathematical calculation does not require those; 
+      -  It is a `parital mean` and `parital sum`. It is a moving average, but mathematical calculation does not require those; 
 
         
 
@@ -104,7 +104,7 @@ Title: Intro Causality Fundamentals
    prob_search_dwb = scipy.special.expit(charitability)
    ```
 
-   `selction bias` is the systematic difference in $Y^0$ between the treatment and control groups. It occurs when the two groups are systematically different even in hte absence of an actual treatment, in this case, it is the `charitibility` of different indiviudals;
+   `selction bias` is the systematic difference in $Y^0$ between the treatment and control groups. It occurs when the two groups are systematically different even in the absence of an actual treatment, in this case, it is the `charitibility` of different indiviudals creates the `prob_search_dwb`;
 
    
 
@@ -274,7 +274,66 @@ The ariticle that I selected was the `Study 5: preschooler's use of phones and t
 
 
 
-3. the $$
+3. the potential outcome of $Y^1$ & $Y^0$ and the treament $D$
+
+   $Y^1 \rightarrow$ the potential crime rate if the policing strategy were put into practise; 
+
+   $Y^0 \rightarrow $ the potential crime rate if the policing strategy were rejected and not put into practise;   
+
+   $D$   $   \rightarrow $ new and strict policy strategies such as gun control laws, laws allowing the carrying of concealed weapons ...
+
+
+
+4. What is the ATE in the study? If there is no number given just identify how they characterize the treatment effect.
+
+   The Average Treatment Effect was given in the section `The Mafnitude of the Decline`; data was presented in the `Table 3`
+
+   The ATE was $-4.3\%$; The treatment effect was characterized using the homicide rate data from 1991 to 2000,  they observed that the homicide rates per capita fell from $9.8 \% \rightarrow 5.5\%$  per $100,000$ population. 
+
+
+
+5. How is the $D$ treatment assigned; 
+
+   There are many treatments in this study. 
+
+   - One good example of how the treatment is assigned is from the `Gun Control Laws`. The Violence Prevention Act of 1993 instituted stricter requirements for background checks before the gun is sold. 
+
+   
+
+   - another example might be in the section `Four Factors That Explain the Decline in Crime`
+
+     the treament here is the increases in the number of police 
+
+
+
+6. what kind of selection bias do you think might be in the study. 
+
+   how would it affects the results; 
+
+   - Some cities in the middle of US such as **Iowa**. It has a very low population density,  the climate is harsh. The crime rate is low when compared with San Francisco which has a much higher population density and nicer climate. So there is a systematic difference between the observed cities. Also, in some cities, the funding might not be that much to increase the policing power. 
+   - in this case, the selection bias will casue the observed crime rate to be lower. 
+
+
+
+7. How would you design an experiment to get an unbiased estimate of the **ATE**? 
+
+   it is a city level experiment, hence it is very hard/impossible to accomplish. It requires the similar cities within US. similar crime rate, mass, population level and practise the same policy strategies. 
+
+
+
+8. Why did you choose this study?
+
+   - **novelty**
+
+     this study studies the human social behavior when respoding to new policies; 
+
+   - This study demostrated that some **policies** might not woking but they are highly correlated with the observed data & pattern/time series trend. 
+
+
+
+
+
+
 
 ## 5 Selection bias vs. big data
 
