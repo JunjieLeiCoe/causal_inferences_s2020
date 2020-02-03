@@ -62,7 +62,7 @@ Title: Intro Causality Fundamentals
 
       - `python` index starts from `0` instead of `1`
 
-      -  It is a `parital mean` and `parital sum`. It is a moving average, but mathematical calculation does not require those; 
+      -  It is a `parital mean` and `parital sum`. so the result is a moving average, but mathematically calculation does not require those; we just sum them and divide by the total number.
 
         
 
@@ -94,7 +94,15 @@ Title: Intro Causality Fundamentals
 
 4. what line(s) of code **fundamentally ** craetes the selection bias? explain.
 
+   there are 2 lines of code that I think highly related
+
+   ```pyhton
+   charitability = np.random.normal(loc=-1, scale=0.5, size=N)
+   prob_search_dwb = scipy.special.expit(charitability)
+   ```
+
    ```python
+   # 1st line of code
    charitability = np.random.normal(loc=-1, scale=0.5, size=N)
    ```
 
@@ -109,6 +117,8 @@ Title: Intro Causality Fundamentals
    
 
 5. calculate the **$P(D =1 )$**
+
+   use the following code can calculate the percentage of each group; 
 
    ![Screen Shot 2020-01-28 at 8.53.36 PM](/Users/leijunjie/Desktop/Screen Shot 2020-01-28 at 8.53.36 PM.png)
 
@@ -154,7 +164,7 @@ np.unique(D,
 
 <img src="/Users/leijunjie/Library/Application Support/typora-user-images/image-20200131121506802.png" alt="image-20200131121506802" style="zoom:25%;" /><img src="/Users/leijunjie/Library/Application Support/typora-user-images/image-20200131121408184.png" alt="image-20200131121408184" style="zoom:25%;" /> 
 
-the overlap...
+the overlap becomes samller compared with that in `figure 1`; 
 
 
 
@@ -327,11 +337,7 @@ The ariticle that I selected was the `Study 5: preschooler's use of phones and t
 
      this study studies the human social behavior when respoding to new policies; 
 
-   - This study demostrated that some **policies** might not woking but they are highly correlated with the observed data & pattern/time series trend. 
-
-
-
-
+   - This study demostrated that some **policies** might not woking but they are highly correlated with the observed data & pattern/time series trend. Also, there are 2 subtle factors such as increased incarceration, teh decline of crack and legalized aboration that are actually driving the decline of crime rates; 
 
 
 
@@ -346,14 +352,78 @@ The ariticle that I selected was the `Study 5: preschooler's use of phones and t
    * S.B --> $ 0.17217832824951973$
    * D.B --> $0$ 
 
-2. 
+
+
+
+2. make a function `selection_bias(n)` that calculates the selection bias in just the first n units... 
+
+- 
+
+  ```python
+  # The same df as we did in class; 
+  N = 10 ** 6
+  charitability = np.random.normal(loc=-1, scale=0.5, size=N)
+  Y0 = np.random.lognormal(mean=(charitability + 0.5), sigma=0.1, size=N)
+  Y1 = Y0.copy()
+  prob_search_dwb = scipy.special.expit(charitability)
+  D = np.random.binomial(n=1, p=prob_search_dwb)
+  Y = Y1 * D + Y0 * (1 - D)
+  df = pd.DataFrame({
+      'D': D, 
+      'Y0': Y0, 
+      'Y1': Y1, 
+      'Y': Y, 
+      'delta': Y1 - Y0,
+      'C': charitability,
+  })
+  
+  # and then we make a selection_bias(n) 
+  import random
+  n = random.randint(0,10000)  # here we radonmly select the value for n;
+  
+  def selection_bias (n):
+    df_pt = df[:n]  # slice the original dataframe and insert with biased data point; 
+    bias = df_pt.query("D == 1")['Y0'].mean() - df_pt.query("D == 0")['Y0'].mean()
+    return bias
+  x = selection_bias(n)
+  print("Selection bias for (n = ", n, ") = ", x)
+  
+  
+  # and then we create the line plt; 
+  my_lst = []
+  for i in range(0,10000):
+    x = selection_bias(i)
+    my_lst.append(x) 
+    
+    
+  line_plt = pd.Series(my_lst)
+  line_plt.plot.line()
+  
+  
+  
+  ```
+  
+- if the n is $100$ for instance. then we are going to get the plt like this; 
+
+  <img src="/Users/leijunjie/Desktop/Screen Shot 2020-02-03 at 2.05.47 PM.png" alt="Screen Shot 2020-02-03 at 2.05.47 PM" style="zoom:50%;" />
+
+
+
+- as we ca see form the graph that the the line is coverging to the value of selection bias $\rightarrow$ ` 1.7` 
+
+  hence, the conclusion is that, the ***the law of large numbers*** applied to the slection bias. 
+
+
 
 ## Bonus.1 Why it is called identification
+
+
 
 ## Bonus.2 
 
 
 
----
 
-Junjie
+
+
+
