@@ -4,7 +4,7 @@
 
 Creator: Junjie Lei
 
-Creation Date: Jan_28_2020
+Creation Date: Jan_28/2020
 
 Title: Intro Causality Fundamentals
 
@@ -62,7 +62,7 @@ Title: Intro Causality Fundamentals
 
       - `python` index starts from `0` instead of `1`
 
-      -  It is a `parital mean` and `parital sum`. so the result is a moving average, but mathematically calculation does not require those; we just sum them and divide by the total number.
+      -  It is a `parital mean()` and `parital sum()`. so the result is a moving average, but mathematically calculation does not require those; we just sum them and divide by the total number of observations.
 
         
 
@@ -415,15 +415,54 @@ The ariticle that I selected was the `Study 5: preschooler's use of phones and t
 
 
 
-## Bonus.1 Why it is called identification
+---
 
 
 
-## Bonus.2 
+## Bonus 1
+
+1. mathmatically, if we naively contrast the average outcomes in the two treatment group; 
+
+   it can be written in the form of $\dfrac{1}{N_{1}} \sum_{i:d_{i =1 } }Y_{i} - \dfrac{1}{N_{0} } \sum_{i: d_{i = 0}} Y_{i}$ 
+
+   which all can be observed form the dataset;  the expectation of this quntity is the Naive Average Treatment Effect (NATE) 
 
 
 
+2. without observing the potential outcome which is the $Y^1$ & $Y^0$ , we cannot directly estimate the ATE, selection bias and differential effects; Only one euqation but with several unknows;
 
 
 
+3. If the independence assumption is not true, in this equation it will have 3 unknows $\rightarrow$ `ATE` & `Selection Bias` & `Differentianl treatment effects`; 
+
+   the solutions can be
+
+   ~~NATE = ATE~~​
+
+   $NATE = ATE + Selection Bias$
+
+   $NATE = ATE$ + $Differential Bias $
+
+   $NATE = ATE $ + $selection bias$ + $differential bias$
+
+   
+
+4. If the independence assumption holds, then we will get the `NATE = ATE` becasue independence assumption eliminates selection bias and differential bias; 
+
+   the assumption is $(Y^0, Y^1) \bot D$ 
+
+   and the additional equations we obtained are 
+
+   $$E[Y|D =d]  = E [Y^0];$$    $$ d = 0,1$$ 
+
+   $$E[Y|D =1]  = E [Y^0|D = 0 ] = 0 $$
+
+
+
+5. in this case, we have $5$ equations; 
+   - ATE
+   - ATT
+   - ATC
+   - NATE
+   - NATE under the `independece assumption`
 
