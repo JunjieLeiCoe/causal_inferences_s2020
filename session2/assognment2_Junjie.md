@@ -73,7 +73,6 @@ ax.tick_params(labelsize=16)
 ```python
 ax = sample_means_exp.hist(bins=100, density=True)
 '''and other formatting code'''
-
 ```
 
 <img src="C:\Users\28260\AppData\Roaming\Typora\typora-user-images\image-20200210153241543.png" alt="image-20200210153241543" style="zoom:50%;" />
@@ -114,7 +113,9 @@ ax = sample_means_exp.hist(bins=100, density=True)
 
    
 
-   - the best way to split is to do the $50/50$
+   <img src="C:\Users\28260\AppData\Roaming\Typora\typora-user-images\image-20200210154353318.png" alt="image-20200210154353318" style="zoom:55%;" /> <img src="C:\Users\28260\AppData\Roaming\Typora\typora-user-images\image-20200210154414622.png" alt="image-20200210154414622" style="zoom:55%;" />
+
+   - the best way to split is to do the $50/50$, because the std.ev is the minimum when the shared treatment is split into $50/50$
 
 3. the estimated `ATE` is greater than $0.7$ 
 
@@ -220,7 +221,10 @@ sample output:
 
 
 
+6. 
+   the false positive rate is the threshold analysts set to determine whether we should reject a null hypothesis or not. 
 
+   in the simulation results we got above, we can see that the distribution changes while we change some of the parameters. so we need to determine upfront a threshold to evaluate the distribution or the test results.
 
 
 
