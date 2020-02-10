@@ -459,10 +459,25 @@ The ariticle that I selected was the `Study 5: preschooler's use of phones and t
 
 
 
-5. in this case, we have $5$ equations; 
-   - ATE
-   - ATT
-   - ATC
-   - NATE
-   - NATE under the `independece assumption`
+5. in this case, we have $4$ possible equations if we including the independet assumption; 
+
+
+
+
+
+## Bonus 2
+
+**NATE** = $E[Y^1|D = 1 ] - E[Y^0 | D = 0]$  
+
+**ATT** = $E[Y^1- Y^0 | D =1] \rightarrow  E[Y^1 | D = 1] - E[Y^0|D=1]$ 
+
+**Selection** **Bias** = $E[Y^0|D =1 ]  - E[Y^0 | D = 0] $
+
+after we add them altogether we can prove that $\rightarrow$ $NATE = ATT + Sel.B$ 
+
+
+
+---
+
+my [Colab](https://colab.research.google.com/drive/1QVz8TPh8yAZcA4_WglTetb6OBKEPd6Zy) for reference; 
 
