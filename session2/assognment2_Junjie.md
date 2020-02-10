@@ -41,21 +41,42 @@ output:
 
 <img src="C:\Users\28260\AppData\Roaming\Typora\typora-user-images\image-20200210103210357.png" alt="image-20200210103210357" style="zoom:100%;" />
 
+<img src="C:\Users\28260\AppData\Roaming\Typora\typora-user-images\image-20200210103322529.png" alt="image-20200210103322529" style="zoom:50%;" />
 
+<img src="C:\Users\28260\AppData\Roaming\Typora\typora-user-images\image-20200210103339690.png" alt="image-20200210103339690" style="zoom:50%;" />
 
 
 
 2. plot the underlying mean on the graph
 
-<img src="C:\Users\28260\AppData\Roaming\Typora\typora-user-images\image-20200210103322529.png" alt="image-20200210103322529" style="zoom:50%;" />
+   for binomial plot
+
+```python
+ax = sample_means_bi.hist(bins=100, density=True)
+
+
+ax.axvline(mu, color='black', linestyle='--')
+ax.text(x=mu, y=7, s=r'$\mu$', fontsize=16)
+ax.set_xlabel(r'$\bar{X}$', fontsize=16)
+ax.set_ylabel('Density', fontsize=16)
+ax.set_title("Simulating the sampling distribution of the mean", fontsize=16)
+ax.legend(fontsize=22)
+ax.tick_params(labelsize=16)
+```
 
 
 
+<img src="C:\Users\28260\AppData\Roaming\Typora\typora-user-images\image-20200210153123288.png" alt="image-20200210153123288" style="zoom:50%;" />
 
+​	for exponential 
 
+```python
+ax = sample_means_exp.hist(bins=100, density=True)
+'''and other formatting code'''
 
+```
 
-<img src="C:\Users\28260\AppData\Roaming\Typora\typora-user-images\image-20200210103339690.png" alt="image-20200210103339690" style="zoom:50%;" />
+<img src="C:\Users\28260\AppData\Roaming\Typora\typora-user-images\image-20200210153241543.png" alt="image-20200210153241543" style="zoom:50%;" />
 
 
 
@@ -93,7 +114,7 @@ output:
 
    
 
-   - the best way to split is ... 
+   - the best way to split is to do the $50/50$
 
 3. the estimated `ATE` is greater than $0.7$ 
 
@@ -144,9 +165,58 @@ output:
 
 2. 
 
+```python
+# Simulation results over a grid of parameter values
+B = 5000
+ATE = 0.0
+parameter_grid = [
+    dict(B = B, n = 400, expectation_Y0 = 1, ATE = ATE, share_treatment = 0.10, sigma = 1, alpha = 0.05),
+    dict(B = B, n = 400, expectation_Y0 = 1, ATE = ATE, share_treatment = 0.25, sigma = 1, alpha = 0.05),
+    dict(B = B, n = 400, expectation_Y0 = 1, ATE = ATE, share_treatment = 0.50, sigma = 1, alpha = 0.05),
+    dict(B = B, n = 400, expectation_Y0 = 1, ATE = ATE, share_treatment = 0.75, sigma = 1, alpha = 0.05),
+    dict(B = B, n = 400, expectation_Y0 = 1, ATE = ATE, share_treatment = 0.90, sigma = 1, alpha = 0.05),
+]
+
+simulation_results =  pd.DataFrame([get_simulation_results(**params) for params in parameter_grid])
+
+# We can also test that the simulations worked as expected.
+# For example:
+assert((simulation_results['share_treatment'] == simulation_results.eval("N_treatment / N")).all())
+```
+
+---
+
+sample output:
+
+<img src="C:\Users\28260\AppData\Roaming\Typora\typora-user-images\image-20200210141914821.png" alt="image-20200210141914821" style="zoom:100%;" />
+
+- diff becomes more scattered when the shared_treatment goes to 0.75 and 0.9
+
+- rejection rate wave above and down the 0.05.
+
+- the changes of t's distribution is not that significant, no pattern can be observed.
 
 
 
+3. 
+
+<img src="C:\Users\28260\AppData\Roaming\Typora\typora-user-images\image-20200210142855448.png" alt="image-20200210142855448" style="zoom:150%;" />
+
+
+
+
+
+4. 
+
+![image-20200210143233910](C:\Users\28260\AppData\Roaming\Typora\typora-user-images\image-20200210143233910.png)
+
+- yes, the rejection rate changed
+
+
+
+5. 
+
+![image-20200210143752780](C:\Users\28260\AppData\Roaming\Typora\typora-user-images\image-20200210143752780.png)
 
 
 
