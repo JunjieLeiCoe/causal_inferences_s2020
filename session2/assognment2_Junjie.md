@@ -1,4 +1,4 @@
-# Causal Inference Assignment 2
+<h1 style="text-align: center;" markdown="3">Causal Inference Assignment 2.</h1>
 
 Creator: <u>Junjie Lei</u>
 
