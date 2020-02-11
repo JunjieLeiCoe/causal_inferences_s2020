@@ -5,6 +5,8 @@ CreationDate: <u>Feb_7/2020</u>
 
 Title: <u>*Random Sampling*</u>
 
+Note: the[ $\textit{Colab}$](https://colab.research.google.com/drive/1bg18x8R1Kbv5pzqlnRr1_igekvIVsIBx) 
+
 ---
 
 <h2 style="text-align: center;" markdown="5">1. Notebook from class</h2>
