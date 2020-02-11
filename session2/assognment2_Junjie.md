@@ -83,8 +83,6 @@ ax = sample_means_exp.hist(bins=100, density=True)
 
 <h3 style="text-align: left;" markdown="2">1.2 Simulating experiment statistics</h3>
 
-
-
 1. the code `sample_results.describe()` showed the standard deviation is  $ 0.127811 $
 
 2.  
@@ -132,7 +130,7 @@ ax = sample_means_exp.hist(bins=100, density=True)
 
 
 
-4. 2 standard deviation would be $2 \times  0.128988   =  0.257976 $ away
+4. 2 standard deviation would be $2 \times  0.128988   =  0.257976 $ away from the $\mu$
 
    hence we can calculate the percentage $\geq 2 std$
 
@@ -154,11 +152,9 @@ ax = sample_means_exp.hist(bins=100, density=True)
 
 
 
-
-
 <h2 style="text-align: center;" markdown="5">2. Simulating t-tests under the null</h2>
 
-1. the probability that when given the null hypothesis is true and we still reject the null;
+1. $\textit{False-postive rate} \rightarrow $  the probability that when given the null hypothesis is true and we still reject the null;
 
    when it is refers to the process of generating sample data, it is the probability that this process rejects $H_{0}$ when the underlying $H_{0}$ simulated is true.
 
@@ -168,14 +164,18 @@ ax = sample_means_exp.hist(bins=100, density=True)
 
 ```python
 # Simulation results over a grid of parameter values
-B = 5000
+B = 1000  # Total number of *samples* to generate
+N = 5000  # The number of data points in each sample
+
 ATE = 0.0
+expectation_Y0 = 3
+
 parameter_grid = [
-    dict(B = B, n = 400, expectation_Y0 = 1, ATE = ATE, share_treatment = 0.10, sigma = 1, alpha = 0.05),
-    dict(B = B, n = 400, expectation_Y0 = 1, ATE = ATE, share_treatment = 0.25, sigma = 1, alpha = 0.05),
-    dict(B = B, n = 400, expectation_Y0 = 1, ATE = ATE, share_treatment = 0.50, sigma = 1, alpha = 0.05),
-    dict(B = B, n = 400, expectation_Y0 = 1, ATE = ATE, share_treatment = 0.75, sigma = 1, alpha = 0.05),
-    dict(B = B, n = 400, expectation_Y0 = 1, ATE = ATE, share_treatment = 0.90, sigma = 1, alpha = 0.05),
+    dict(B = B, n = N, expectation_Y0 = expectation_Y0, ATE = ATE, share_treatment = 0.10, sigma = 1, alpha = 0.05),
+    dict(B = B, n = N, expectation_Y0 = expectation_Y0, ATE = ATE, share_treatment = 0.25, sigma = 1, alpha = 0.05),
+    dict(B = B, n = N, expectation_Y0 = expectation_Y0, ATE = ATE, share_treatment = 0.50, sigma = 1, alpha = 0.05),
+    dict(B = B, n = N, expectation_Y0 = expectation_Y0, ATE = ATE, share_treatment = 0.75, sigma = 1, alpha = 0.05),
+    dict(B = B, n = N, expectation_Y0 = expectation_Y0, ATE = ATE, share_treatment = 0.90, sigma = 1, alpha = 0.05),
 ]
 
 simulation_results =  pd.DataFrame([get_simulation_results(**params) for params in parameter_grid])
@@ -189,7 +189,7 @@ assert((simulation_results['share_treatment'] == simulation_results.eval("N_trea
 
 sample output:
 
-<img src="C:\Users\28260\AppData\Roaming\Typora\typora-user-images\image-20200210141914821.png" alt="image-20200210141914821" style="zoom:100%;" />
+<img src="C:\Users\28260\AppData\Roaming\Typora\typora-user-images\image-20200210163318280.png" alt="image-20200210163318280" style="zoom:150%;" />
 
 - diff becomes more scattered when the shared_treatment goes to 0.75 and 0.9
 
@@ -201,23 +201,31 @@ sample output:
 
 3. 
 
-<img src="C:\Users\28260\AppData\Roaming\Typora\typora-user-images\image-20200210142855448.png" alt="image-20200210142855448" style="zoom:150%;" />
+in the following code I changed the n 
 
-
+<img src="C:\Users\28260\AppData\Roaming\Typora\typora-user-images\image-20200210163625957.png" alt="image-20200210163625957" style="zoom:150%;" />
 
 
 
 4. 
 
-![image-20200210143233910](C:\Users\28260\AppData\Roaming\Typora\typora-user-images\image-20200210143233910.png)
+in the following code I changed the `sigma` & $E[Y^0]$
 
-- yes, the rejection rate changed
+<img src="C:\Users\28260\AppData\Roaming\Typora\typora-user-images\image-20200210163816893.png" alt="image-20200210163816893" style="zoom:150%;" />
+
+- yes, the rejection rate changed 
 
 
 
 5. 
 
-![image-20200210143752780](C:\Users\28260\AppData\Roaming\Typora\typora-user-images\image-20200210143752780.png)
+- in the code chunk, the $\alpha$ determines the $\textit{false-positive rate}$
+
+  hence in the following code I changed the `n (sample size)` and the $\textit{rejection rate}$ at the same time
+
+![image-20200210164415037](C:\Users\28260\AppData\Roaming\Typora\typora-user-images\image-20200210164415037.png)
+
+
 
 
 
@@ -322,11 +330,9 @@ sample output:
    simulation_results =  pd.DataFrame([get_simulation_results(**params) for params in parameter_grid])
    ```
 
-   
-
    ---
 
-   and the code for plot & plot
+   and the code for plot & plot shows that 50/50 still the best in this circumstance; 
 
    ```python
    plt.plot(simulation_results['share_treatment'], simulation_results['p_reject'])
