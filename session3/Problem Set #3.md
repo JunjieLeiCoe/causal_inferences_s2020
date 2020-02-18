@@ -6,7 +6,7 @@ CreationDate: <font color="blue"> Feb_10</font>
 
 Title: <font color="blue">Problem Sets #3 experiments and regressions </font>
 
-Notes: [$Colab$](https://colab.research.google.com/drive/1xmZXb29jz1nrVD87hR1gbC4W5dVBUNZa#scrollTo=lxEmEbn7PNHP)​
+Notes: [$Colab$](https://colab.research.google.com/drive/1xmZXb29jz1nrVD87hR1gbC4W5dVBUNZa)
 
 ---
 
@@ -157,53 +157,268 @@ the output for `k` is $58$
 
 
 
-<h3 align="center">Shoe technology experiment</h3>
+<h3 align="center">1.2 Shoe technology experiment</h3>
+
+1.2.1 
+
+- set the baseline `inter-person variability ` $\rightarrow$ $5$ 
+
+- use the `std()` function to find the standard deviation of the estimated $\textit{ATE}$;
+
+$\textit{for the block distrivution} \rightarrow$ $0.134456$
+
+$\textit{for the non-block distrivution} \rightarrow$  $0.236282$
 
 
 
-1.2.1
+1.2.2
+
+- If we increase the `inter-person variabilty ` $\rightarrow$ 10, and rep
+
+$\textit{for the block distrivution} \rightarrow$ $0.445792$
+
+$\textit{for the non-block distrivution} \rightarrow$  $0.14316$
+
+> if we increase the `inter-person variability` , then  the $\textit{Std.ev}$ of estimated ATE will also increases; 
+
+
+
+1.2.3
+
+- in this exercise, we simulate different levels of `inter-person variability` as follows
+
+<img src="C:\Users\28260\AppData\Roaming\Typora\typora-user-images\image-20200218011238995.png" alt="image-20200218011238995" style="zoom:70%;" />
+
+- and then we plot the values of  $\textit{Std.ev}$ under different levels of inter-person variability
+
+<img src="C:\Users\28260\AppData\Roaming\Typora\typora-user-images\image-20200218011552879.png" alt="image-20200218011552879" style="zoom:70%;" />
+
+
+
+1.2.4
+
+`inter-person variability` indicates different person's changeability in choices.
+
+if the inter-person variability = 0, then it indicates the homogeneity of person
+
+however, if it = 20, then it means the heterogeneity between individuals
+
+
+
+1.2.5  
+
+- the red bins indicates the regression analysis under the `block design`
+- the blue bins indicates the regression analysis under the `no block design `
+
+<img src="C:\Users\28260\AppData\Roaming\Typora\typora-user-images\image-20200218014537007.png" alt="image-20200218014537007" style="zoom:50%;" /> <img src="C:\Users\28260\AppData\Roaming\Typora\typora-user-images\image-20200218014556350.png" alt="image-20200218014556350" style="zoom:50%;" />
+
+- above is the standard errors under different `inter person variability`
+  - 1st one is the `block design` with inter person variability of `5`
+  - 2nd plot is `no-block design` with inter person variability of `20`
+
+
+
+<img src="C:\Users\28260\AppData\Roaming\Typora\typora-user-images\image-20200218014618838.png" alt="image-20200218014618838" style="zoom:50%;" /> <img src="C:\Users\28260\AppData\Roaming\Typora\typora-user-images\image-20200218014630134.png" alt="image-20200218014630134" style="zoom:50%;" />
+
+above is the standard errors under different `inter person variability`
+
+- 1st one is the `no-block design` with inter person variability of `5`
+- 2nd plot is `block design` with inter person variability of `20`
+
+
+
+1.2.6 ***Bonus Question***
+
+change score approach; use the lagged historical wear
+
+
+
+1.2.7
+
+if we cut the sample tp `N = 20` and use the inter person variability to be 20 
+
+with `no-block design` 
+
+<img src="image-20200218022558762.png" alt="image-20200218022558762" style="zoom:70%;" />
+
+and without `block design`
+
+<img src="image-20200218022823668.png" alt="image-20200218022823668" style="zoom:70%;" />
 
 
 
 
 
+<h3 align="center">2 Regression</h3>
+
+2.1
+
+ATE --> 
+
+grad_high_school --> dummy variable
 
 
 
+2.2 
+
+```python
+B=1000
+pvalues1 = []
+
+for i in progressbar(np.arange(0, B)):
+  sample = newfunction2(N = 13560, beta_hs = .35, ATE = 0.018)
+  model1 = sfa.ols(formula='y ~ d', data=sample).fit()
+  pvalues1.append(model1.pvalues.d)
+
+pvalues1 = pd.Series(pvalues1)
+stpower = (pvalues1 < .05).mean()
+print("statistical power Model 1= ", stpower)
+```
+
+----
+
+output: statistical power Model =  $0.523$
+
+with the same code if we add the `control variable -- grad_high_school` in, then we can observe the new statistical power increases to $0.588$
 
 
 
+2.3
+
+if we change the parameter `Beta_hs`to $0.1$ then we can get 
+
+```python
+#Model 2
+pvalues2= []
+
+for i in progressbar(np.arange(0, B)):
+  sample = newfunction2(N = 13560, beta_hs = .1, ATE = .018)
+  model2 = sfa.ols(formula='y ~ d + grad_high_school', data=sample).fit()
+  pvalues2.append(model2.pvalues.d)
+
+pvalues2 = pd.Series(pvalues2)
+stpower2 = (pvalues2 < .05).mean()
+print(" new statistical power Model 2= ", stpower2)
+```
+
+---
+
+output 
+
+new statistical power Model 2=  $0.619$
 
 
 
+2.4
 
 
 
+2.5
 
 
 
+ <h3 align = 'center'> 3 Shoe tech experiment redux </h3>
+
+```python
+B=1000
+list_noblock = []
+
+for i in progressbar(np.arange(0, B)):
+  sample = gen_shoe_data(N=100, block=False, person_variability=20)
+  noblock2 = sfa.ols(formula='y ~ d', data=sample).fit()
+  list_noblock.append(noblock2.pvalues.d)
+
+list_noblock = pd.Series(list_noblock)
+stpower_noblock = (list_noblock < .05).mean()
+print("the statistical power of the non-blocking design = ", stpower_noblock)
+```
+
+---
+
+output: 
+
+the statistical power of the non-blocking design =  $0.048$
+
+with the same `block & no-block design`, if we modify the formula to `formula = 'y ~ d + r_yo'` then we can detect that 
+
+```python
+B=1000
+list_block = []
+
+for i in progressbar(np.arange(0, B)):
+  sample = gen_shoe_data(N=100, block=False, person_variability=20)
+  block2 = sfa.ols(formula='y ~ d + r_y0', data=sample).fit()
+  list_block.append(block2.pvalues.d)
+
+list_block = pd.Series(list_block)
+stpower_block = (list_block < .05).mean()
+print("the statistical power of the blocking design = ", stpower_block)
+```
+
+---
+
+output: 
+
+the statistical power of the blocking design =  $0.271$
 
 
 
+3.2
+
+3.3
+
+3.4
+
+3.5
 
 
 
+ <h3 align = 'center'> Bonus </h3>
+
+```python
+B=5000
+
+list_noblock = []
+
+for i in progressbar(np.arange(0, B)):
+  sample = gen_shoe_data(N=100, block=False, person_variability=20)
+  noblock3 = sfa.ols(formula='y ~ d', data=sample).fit()
+  list_noblock.append(noblock3.pvalues.d)
+
+list_noblock = pd.Series(list_noblock)
+stpower_noblock = (list_noblock < .05).mean()
+print("the statistical power of the non-blocking design = ", stpower_noblock)
+```
+
+---
+
+output:
+
+the statistical power of the non-blocking design =  $0.0574$
+
+```python
+B = 5000
+list_block = []
+
+for i in progressbar(np.arange(0, B)):
+  sample = gen_shoe_data(N=100, block=True, person_variability=20)
+  block3 = sfa.ols(formula='y ~ d + r_y0', data=sample).fit()
+  list_block.append(block3.pvalues.d)
+
+list_block = pd.Series(list_block)
+stpower_block = (list_block < .05).mean()
+print("the statistical power of the blocking design = ", stpower_block)
+```
+
+---
+
+output:
+
+the statistical power of the non-blocking design =  $0.2828$
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+---
 
 
 
