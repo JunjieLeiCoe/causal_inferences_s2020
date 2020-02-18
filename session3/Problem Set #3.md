@@ -12,7 +12,7 @@ Notes: [$Colab$](https://colab.research.google.com/drive/1xmZXb29jz1nrVD87hR1gbC
 
 <h2 align="center">In-class notebook exercises</h2>
 
-### 1.1 Replicate and simulate a real study
+<h3 align="center"> Replicate and simulate a real study </h3>
 
 1.1.1
 
@@ -118,4 +118,94 @@ for this question, we replicate what we did from the previous simulation;
 and we plot the `params['d']` to show the estimated treatment effects;
 
 <img src="C:\Users\28260\AppData\Roaming\Typora\typora-user-images\image-20200217233412617.png" alt="image-20200217233412617" style="zoom:50%;" /> <img src="C:\Users\28260\AppData\Roaming\Typora\typora-user-images\image-20200217233543211.png" alt="image-20200217233543211" style="zoom:50%;" />
+
+
+
+1.1.6
+
+from the model1 the $\textit{Std.ev} \rightarrow 0.009991$ 
+
+from the model2 the $\textit{Std.ev} \rightarrow 0.009918$
+
+
+
+1.1.7 
+
+refer to the `Confidence Interval machine` 
+
+```markdown
+Left board of confidence lever for model 1 =  `0.03159373629542879`
+Right board of confidence lever for model 1 =  `0.03284826370457121`
+Left board of confidence lever for model 2 = `0.03114525827711666`
+Right board of confidence lever for model 2 =  `0.032286741722883344`
+```
+
+and we count when the confidence intervals include the `true ATE` in each model
+
+```python
+k = 0
+for i in np.arange(0, B):
+  if ch[0][i] >= lboard1 and ch[0][i] <= rboard1:
+    k = k+1
+  else:
+    k = k + 0
+```
+
+the output for `k` is $58$
+
+---
+
+
+
+<h3 align="center">Shoe technology experiment</h3>
+
+
+
+1.2.1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
