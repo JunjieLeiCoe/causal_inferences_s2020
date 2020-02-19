@@ -51,7 +51,7 @@ print(r_col4.summary())
 
 1.1.3
 
-<img src="C:\Users\28260\AppData\Roaming\Typora\typora-user-images\image-20200217225154463.png" alt="image-20200217225154463" style="zoom:100%;" />
+<img src="/Users/leijunjie/JUNJIE/causal_inferences_s2020/session3/pic/image-20200217225154463.png" alt="image-20200217225154463" style="zoom:70%;" />
 
 - for the estimation of the effect of `rem _any` in the experiments; 
 
@@ -107,7 +107,7 @@ res = pd.DataFrame([new_simulation_function() for i in np.arange(0, B)])
 
 and we see the results; 
 
-<img src="C:\Users\28260\AppData\Roaming\Typora\typora-user-images\image-20200217232821168.png" alt="image-20200217232821168" style="zoom:100%;" />
+<img src="/Users/leijunjie/JUNJIE/causal_inferences_s2020/session3/pic/image-20200217232821168.png" alt="image-20200217232821168" style="zoom:80%;" />
 
 
 
@@ -117,7 +117,7 @@ for this question, we replicate what we did from the previous simulation;
 
 and we plot the `params['d']` to show the estimated treatment effects;
 
-<img src="C:\Users\28260\AppData\Roaming\Typora\typora-user-images\image-20200217233412617.png" alt="image-20200217233412617" style="zoom:50%;" /> <img src="C:\Users\28260\AppData\Roaming\Typora\typora-user-images\image-20200217233543211.png" alt="image-20200217233543211" style="zoom:50%;" />
+<img src="/Users/leijunjie/JUNJIE/causal_inferences_s2020/session3/pic/image-20200217233412617.png" alt="image-20200217233412617" style="zoom:50%;" /> <img src="/Users/leijunjie/JUNJIE/causal_inferences_s2020/session3/pic/image-20200217233543211.png" alt="image-20200217233543211" style="zoom:50%;" />
 
 
 
@@ -187,11 +187,11 @@ $\textit{for the non-block distrivution} \rightarrow$  $0.14316$
 
 - in this exercise, we simulate different levels of `inter-person variability` as follows
 
-<img src="C:\Users\28260\AppData\Roaming\Typora\typora-user-images\image-20200218011238995.png" alt="image-20200218011238995" style="zoom:70%;" />
+<img src="/Users/leijunjie/JUNJIE/causal_inferences_s2020/session3/pic/image-20200218011238995.png" alt="image-20200218011238995" style="zoom:67%;" />
 
 - and then we plot the values of  $\textit{Std.ev}$ under different levels of inter-person variability
 
-<img src="C:\Users\28260\AppData\Roaming\Typora\typora-user-images\image-20200218011552879.png" alt="image-20200218011552879" style="zoom:70%;" />
+<img src="/Users/leijunjie/JUNJIE/causal_inferences_s2020/session3/pic/image-20200218011552879.png" alt="image-20200218011552879" style="zoom:70%;" />
 
 
 
@@ -210,15 +210,15 @@ however, if it = 20, then it means the heterogeneity between individuals
 - the red bins indicates the regression analysis under the `block design`
 - the blue bins indicates the regression analysis under the `no block design `
 
-<img src="C:\Users\28260\AppData\Roaming\Typora\typora-user-images\image-20200218014537007.png" alt="image-20200218014537007" style="zoom:50%;" /> <img src="C:\Users\28260\AppData\Roaming\Typora\typora-user-images\image-20200218014556350.png" alt="image-20200218014556350" style="zoom:50%;" />
+<img src="/Users/leijunjie/JUNJIE/causal_inferences_s2020/session3/image-20200218014537007.png" alt="image-20200218014537007" style="zoom:50%;" />         <img src="/Users/leijunjie/JUNJIE/causal_inferences_s2020/session3/pic/image-20200218014556350.png" alt="image-20200218014556350" style="zoom:50%;" />
 
 - above is the standard errors under different `inter person variability`
   - 1st one is the `block design` with inter person variability of `5`
   - 2nd plot is `no-block design` with inter person variability of `20`
 
+<img src="/Users/leijunjie/JUNJIE/causal_inferences_s2020/session3/pic/image-20200218014618838.png" alt="image-20200218014618838" style="zoom:50%;" />
 
-
-<img src="C:\Users\28260\AppData\Roaming\Typora\typora-user-images\image-20200218014618838.png" alt="image-20200218014618838" style="zoom:50%;" /> <img src="C:\Users\28260\AppData\Roaming\Typora\typora-user-images\image-20200218014630134.png" alt="image-20200218014630134" style="zoom:50%;" />
+<img src="/Users/leijunjie/JUNJIE/causal_inferences_s2020/session3/pic/image-20200218014630134.png" alt="image-20200218014630134" style="zoom:50%;" />
 
 above is the standard errors under different `inter person variability`
 
@@ -247,15 +247,21 @@ and without `block design`
 
 
 
+---
+
+form $1.2.7 \rightarrow$ with `block design`, the standard error of the edtiamted ate is lower. But the trade off is we are in a much smaller sample size compared with the `covariate approach`
+
 
 
 <h3 align="center">2 Regression</h3>
 
 2.1
 
-ATE --> 
+- $\textit{ATE}$  in this paper indicates the avergae treatment effect of how the `reminders`(treatment) increas savings to different groups of individuals
 
-grad_high_school --> dummy variable
+- $\textit{Coef}$ under the dummy variables `grad_high_school` provides a measure of the difference between group indetified by the variables `grad_high_school` and the group serves as a refernce. If the coefficient is positive, then it means for the person who complete 
+
+
 
 
 
@@ -311,13 +317,19 @@ new statistical power Model 2=  $0.619$
 
 2.4
 
+- from the previosu simulation, it is easy to observe that when we lower the `beta_hs`, we got an much higher experiment's statistical power 
 
+2.5 
 
-2.5
+- form previous questions together, if we have a lower coefficients on the control varaibles, then we expected to find a higher experiment's main variables (here, it is the $\textit{d}$  treatment effect) 
+
+- so when in the data collecting process, we expect the control variables to be less correlated with the independent variable (which represents the treament)
 
 
 
  <h3 align = 'center'> 3 Shoe tech experiment redux </h3>
+
+3.1
 
 ```python
 B=1000
@@ -339,7 +351,7 @@ output:
 
 the statistical power of the non-blocking design =  $0.048$
 
-with the same `block & no-block design`, if we modify the formula to `formula = 'y ~ d + r_yo'` then we can detect that 
+with the same `block & no-block design`, if we modify the formula to `formula = 'y ~ d + r_yo'` then we can rewrite the code to be:
 
 ```python
 B=1000
@@ -365,11 +377,28 @@ the statistical power of the blocking design =  $0.271$
 
 3.2
 
+$\textit{Block}$ can increase power becasue block group together similar units into the a block and split each block into treatment and control group which balances the characteristics across control and treatment groups and ultimately minimize the extraneous variation in our estimated ATE. It is a completely randomized design. 
+
+
+
 3.3
 
-3.4
+- add covariates and control varaibles can soak up the variations in the outcome and make the estimations more precise because the control variables implemented potentially can shrink the residuals
+
+
+
+3.4  
+
+- "Change scores" analysis the before and after differences; we use the differnces in estiamtion of $Y^{0} \& Y^{1}$ to  get precise estiamte the treatment effect;
+
+
 
 3.5
+
+- for blocking, each person effectively serves as their own control group. It is a compelely randomized design. But this technique is effective only when there is a high heterogenity between the people. like what we implemented before the `inter person varaibility ` parameter. 
+- for the estimation of changing scores techniques, each observation sereves as their own control. we can add pre-treatment covariates that  predict the putcome, but with this approach, we can not rollback. 
+
+- for the use of convariates in the regression,  it is a very robust techiquqe, gernerlization of averaging and very convient for estimating the treatment effects in experiments. But choosing the right covariates, unbiased control variables can be challenging. 
 
 
 
@@ -382,7 +411,7 @@ list_noblock = []
 
 for i in progressbar(np.arange(0, B)):
   sample = gen_shoe_data(N=100, block=False, person_variability=20)
-  noblock3 = sfa.ols(formula='y ~ d', data=sample).fit()
+  noblock3 = sfa.ols(formula='y ~ d + r_y0', data=sample).fit()
   list_noblock.append(noblock3.pvalues.d)
 
 list_noblock = pd.Series(list_noblock)
@@ -394,7 +423,7 @@ print("the statistical power of the non-blocking design = ", stpower_noblock)
 
 output:
 
-the statistical power of the non-blocking design =  $0.0574$
+the statistical power of the non-blocking design + regression=  $0.2772$
 
 ```python
 B = 5000
@@ -402,7 +431,7 @@ list_block = []
 
 for i in progressbar(np.arange(0, B)):
   sample = gen_shoe_data(N=100, block=True, person_variability=20)
-  block3 = sfa.ols(formula='y ~ d + r_y0', data=sample).fit()
+  block3 = sfa.ols(formula='y ~ d + r_y0 ', data=sample).fit()
   list_block.append(block3.pvalues.d)
 
 list_block = pd.Series(list_block)
@@ -414,7 +443,27 @@ print("the statistical power of the blocking design = ", stpower_block)
 
 output:
 
-the statistical power of the non-blocking design =  $0.2828$
+the statistical power of the blocking design  =  $0.295$
+
+
+
+but if we just run it with block design and without person's wear-rate 
+
+```python
+B = 5000
+list_block = []
+
+for i in progressbar(np.arange(0, B)):
+  sample = gen_shoe_data(N=100, block=True, person_variability=20)
+  block3 = sfa.ols(formula='y ~ d ', data=sample).fit()
+  list_block.append(block3.pvalues.d)
+
+list_block = pd.Series(list_block)
+stpower_block = (list_block < .05).mean()
+print("the statistical power of the blocking design = ", stpower_block)
+```
+
+the statistical power will be $0.2866$
 
 
 
