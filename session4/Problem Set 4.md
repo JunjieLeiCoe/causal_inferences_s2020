@@ -5,11 +5,12 @@ CreationDate: <font color="blue"> Feb_23/2020</font>
 
 Title: <font color="blue">Causal Inference Assignment04  -- Practical Sources of bias</font>
 
-Note: My [<font color="blue">$Colab$</font>](https://colab.research.google.com/gist/JunjieLeiCoe/8cce94c4fec9381b077fcc5c0bec055a/lecture-04-practical_sources_of_bias.ipynb?authuser=1#scrollTo=H8CGE_nl48Bm)
+Note: My [Colab](https://colab.research.google.com/gist/JunjieLeiCoe/8cce94c4fec9381b077fcc5c0bec055a/lecture-04-practical_sources_of_bias.ipynb?authuser=1#scrollTo=H8CGE_nl48Bm)
 
 
 
-<h2 align="center">In-class foundation</h2>
+<h2 align="center">1. In-class foundation</h2>
+
 1. 
 
    - the $ATE = 0.03$
@@ -158,7 +159,7 @@ Stratification on day_of_week help reduces the variation in ATE between days dur
 
 
 
-<h2 align="center">One-sided noncompliance in a web experiment </h2>
+<h2 align="center">2. One-sided noncompliance in a web experiment </h2>
 
 
 
@@ -199,9 +200,11 @@ r_itt_2 = sfa.ols("y ~ coin_flip + viewed_page", df).fit(cov_
 type='HC1')
 ```
 
-$Coef_{view page}$  = 0.22
+$Coef_{view page}$  = 0.221
 
-$Coef_{coin flip}$  = 0.1
+$Coef_{coin flip}$  = 0.1626
+
+<img src="/Users/leijunjie/Library/Application Support/typora-user-images/image-20200224153344371.png" alt="image-20200224153344371" style="zoom:50%;" />
 
 using the ITT regression but including different covariates did not help us improve and identify the ATE estimates. 
 
@@ -215,9 +218,11 @@ IIT = r_itt.params['coin_flip']
 CACE = IIT / complier_ratio
 ```
 
-ITT = 0.01
 
-CACE is 0.12
+
+ITT = $0.0997$
+
+CACE is $0.199575168$
 
 - ITT tend to underestimate the ATE, because it assumes E(Y) is the same as Z. 
 - CACE can be used to restore/improve ATE by using the P(D = 1)
@@ -236,7 +241,7 @@ CACE is 0.12
 df.y1.mean() - df.y0.mean()
 ```
 
-output --> 0.15
+output --> 0.148
 
 
 
@@ -244,7 +249,7 @@ output --> 0.15
 
 ![image-20200224130951888](image-20200224130951888.png)
 
-the ATE and CACE in this case were hard to identify. 
+the ATE and CACE in this case were hard to identify and pretty much deviate from the true treatment effect. 
 
 they are pretty much far away from the ATE -> 0.15 
 
@@ -257,21 +262,15 @@ cace_1 = sfa.ols("y ~ coin_flip + charitability", df4.query("viewed_page == 1"))
 print(r_cace_1.summary(yname="Conversion"))
 ```
 
-in the previous problem, the `CACE` can help to find the ATE estimate;
+In the previous problem, the `CACE` can help/improve to find the ATE estimate;
 
-but now it is hard for us to identify, because in the previous problem we can stratify, but in this case, after we adding the covariate of charitability, we can no longer control for each individual decision.
+- but now it is hard for us to identify, because in the previous problem we can stratify, but in this case, after we adding the covariate of charitability, we can no longer control for each individual decision.
 
 
 
 4. 
 
-if we still have the `coin_flip` and `saw_treatment_page` it is possible for us to restore the missing data with some deviation, but now we are expecting a lower estimation. The accuracy of estimation will be affected because we still need to identify the individuals who `treatment (saw_page)== assingment(coin_flip)`
-
-
-
-
-
-
+if we still have the `coin_flip` and `saw_treatment_page` it is possible for us to restore/guess the missing data with some deviation, but now we are expecting a lower estimation. The accuracy of estimation will be affected because we still need to identify the individuals who `treatment (saw_page)== assingment(coin_flip)`; and the `view_page` is a binomial distribution with probability of `charability`, hence a lower estimation of ATE is expected in this scenario. 
 
 
 
@@ -281,3 +280,4 @@ if we still have the `coin_flip` and `saw_treatment_page` it is possible for us 
 
 ---
 
+JUNJIE
